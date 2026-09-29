@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arisan Mamah</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1F6F5B">
+<style>
+:root{--bg:#F3F6F1;--ink:#1D2B26;--g:#1F6F5B;--y:#F2B233;--line:#CBD8CF}
+body{margin:0;font:20px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+main{max-width:560px;margin:0 auto;padding:16px 16px 48px}
+h1{font-size:28px;margin:8px 0 12px}h2{font-size:24px;margin:4px 0 8px}p{margin:12px 0}small{opacity:.75}
+button,.btn{display:block;box-sizing:border-box;text-align:center;text-decoration:none;font:inherit;font-weight:700;border:2px solid var(--g);border-radius:14px;padding:14px;width:100%;margin:8px 0;background:var(--g);color:#fff;min-height:56px}
+button.y{background:var(--y);border-color:var(--y);color:var(--ink)}
+button.o{background:#fff;color:var(--g)}
+input,textarea{font:inherit;width:100%;box-sizing:border-box;padding:14px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.card{background:#fff;border-left:8px solid var(--y);border-radius:12px;padding:14px 16px;margin:12px 0}
+.row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+input[type=checkbox]{width:32px;height:32px;flex:none;accent-color:var(--g)}
+:focus-visible{outline:3px solid var(--y);outline-offset:2px}
+</style></head><body><main id="app"></main>
+<script>
+const $=document.getElementById('app'),K='arisan-v1';
+let S,view={p:'home'},sis='kocok';
+try{S=JSON.parse(localStorage.getItem(K))||{g:[]}}catch(e){S={g:[]}}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const rp=n=>'Rp'+Number(n||0).toLocaleString('id-ID');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const G=()=>S.g.find(x=>x.id===view.id),cur=g=>g.r[g.r.length-1];
+const nm=(g,id)=>(g.a.find(x=>x.id===id)||{}).nama||'-';
+const wa=(hp,t)=>'https://wa.me/'+(hp?hp.replace(/\D/g,'').replace(/^0/,'62'):'')+'?text='+encodeURIComponent(t);
+const v=id=>document.getElementById(id).value;
+const go=x=>{view=x;render();scrollTo(0,0)};
+
+function home(){return `<h1>Arisan Mamah</h1>`+(S.g.length?S.g.map(g=>`<button class="o" data-a="buka" data-id="${g.id}">${esc(g.n)}<br><small>Putaran ${g.r.length} dari ${g.a.length}</small></button>`).join(''):'<p>Belum ada arisan. Tekan tombol di bawah untuk mulai.</p>')+`<button data-a="baru">+ Buat arisan baru</button><button class="o" data-a="cadang">Simpan cadangan</button><button class="o" data-a="pulih">Pulihkan cadangan</button><input type="file" id="f" accept=".json" hidden>`}
+
+function form(){return `<h1>Arisan baru</h1><p>Nama arisan</p><input id="n" placeholder="Contoh: Arisan RT 05"><p>Iuran per orang (Rp)</p><input id="i" inputmode="numeric" placeholder="100000"><p>Sistemnya gimana?</p><button id="s1" class="${sis==='kocok'?'':'o'}" data-a="sis" data-v="kocok">Kocokan (diundi tiap bulan)</button><button id="s2" class="${sis==='urut'?'':'o'}" data-a="sis" data-v="urut">Urut giliran (sesuai daftar)</button><p>Nama anggota, satu baris satu orang. Nomor WA boleh ditulis setelah koma.</p><textarea id="a" rows="7" placeholder="Bu Sari, 08123456789&#10;Bu Ani"></textarea><button data-a="simpan">Simpan arisan</button><button class="o" data-a="home">Batal</button>`}
+
+function det(g){const r=cur(g),n=g.a.length,ok=g.a.filter(x=>r.b[x.id]).length;
+return `<button class="o" data-a="home">← Kembali</button><h1>${esc(g.n)}</h1><p>Putaran ${g.r.length} dari ${n}, sistem ${g.s==='kocok'?'kocokan':'urut giliran'}</p>
+<div class="card"><small>Yang dapat bulan ini</small><h2>${r.w?esc(nm(g,r.w)):'Belum dikocok'}</h2>${g.s==='kocok'&&!r.w?'<button class="y" data-a="kocok">Kocok sekarang</button>':''}</div>
+<h2>Sudah bayar</h2>`+g.a.map(x=>`<label class="row"><input type="checkbox" data-a="bayar" data-id="${x.id}" ${r.b[x.id]?'checked':''}><span>${esc(x.nama)}</span></label>`).join('')+
+`<p><b>Terkumpul ${rp(ok*g.i)}</b> dari ${rp(n*g.i)}<br>${ok} dari ${n} orang sudah bayar</p><button data-a="rekap">Kirim rekap ke WA</button><button class="y" data-a="ingat">Ingetin yang belum bayar</button><button class="o" data-a="next">Lanjut ke putaran berikutnya</button><button class="o" data-a="hapus">Hapus arisan ini</button>`}
+
+function ingat(g){const r=cur(g),no=g.a.filter(x=>!r.b[x.id]);
+return `<button class="o" data-a="buka" data-id="${g.id}">← Kembali</button><h1>Belum bayar</h1>`+(no.length?no.map(x=>x.hp?`<a class="btn" target="_blank" rel="noopener" href="${wa(x.hp,`Halo ${x.nama}, mau ingetin iuran ${g.n} putaran ${g.r.length} sebesar ${rp(g.i)} ya. Makasih 🙏`)}">Ingetin ${esc(x.nama)}</a>`:`<p class="row">${esc(x.nama)} (belum ada nomor WA)</p>`).join(''):'<p>Semua sudah bayar 🎉</p>')}
+
+function rekap(g){const r=cur(g),ok=g.a.filter(x=>r.b[x.id]),no=g.a.filter(x=>!r.b[x.id]);
+const l=a=>a.length?a.map(x=>'- '+x.nama).join('\n'):'-';
+return `*${g.n}* putaran ${g.r.length}\nIuran ${rp(g.i)} per orang\nYang dapat: ${r.w?nm(g,r.w):'belum dikocok'}\n\nSudah bayar:\n${l(ok)}\n\nBelum bayar:\n${l(no)}\n\nTerkumpul ${rp(ok.length*g.i)} dari ${rp(g.a.length*g.i)}`}
+
+function render(){const g=G();$.innerHTML=view.p==='baru'?form():view.p==='det'?det(g):view.p==='ingat'?ingat(g):home()}
+
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,g=G();
+if(a==='home')go({p:'home'});
+else if(a==='baru'){sis='kocok';go({p:'baru'})}
+else if(a==='buka')go({p:'det',id:+t.dataset.id});
+else if(a==='sis'){sis=t.dataset.v;document.getElementById('s1').className=sis==='kocok'?'':'o';document.getElementById('s2').className=sis==='urut'?'':'o'}
+else if(a==='simpan'){const n=v('n').trim(),i=parseInt(v('i').replace(/\D/g,''))||0,ls=v('a').split('\n').map(x=>x.trim()).filter(Boolean);
+ if(!n||!i||ls.length<2)return alert('Isi nama arisan, iuran, dan minimal 2 anggota ya.');
+ const A=ls.map((x,k)=>{const p=x.split(',');return{id:Date.now()+k,nama:p[0].trim(),hp:(p[1]||'').trim()}});
+ const id=Date.now();S.g.push({id,n,i,s:sis,a:A,r:[{w:sis==='urut'?A[0].id:null,b:{}}]});save();go({p:'det',id})}
+else if(a==='bayar'){cur(g).b[t.dataset.id]=t.checked;save();render()}
+else if(a==='kocok'){const r=cur(g),got=g.r.map(x=>x.w),p=g.a.filter(x=>!got.includes(x.id));r.w=p[Math.floor(Math.random()*p.length)].id;save();render()}
+else if(a==='rekap')window.open(wa('',rekap(g)),'_blank');
+else if(a==='ingat')go({p:'ingat',id:g.id});
+else if(a==='next'){if(!cur(g).w)return alert('Kocok dulu siapa yang dapat bulan ini.');
+ if(g.r.length>=g.a.length)return alert('Semua anggota sudah dapat. Arisan selesai 🎉');
+ if(!confirm('Lanjut ke putaran berikutnya?'))return;
+ g.r.push({w:g.s==='urut'?g.a[g.r.length].id:null,b:{}});save();go(view)}
+else if(a==='hapus'){if(confirm('Yakin hapus arisan ini? Datanya hilang.')){S.g=S.g.filter(x=>x.id!==g.id);save();go({p:'home'})}}
+else if(a==='cadang'){const f=new File([JSON.stringify(S)],'cadangan-arisan.json',{type:'application/json'});
+ if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f]}).catch(()=>{});
+ else{const l=document.createElement('a');l.href=URL.createObjectURL(f);l.download=f.name;l.click()}}
+else if(a==='pulih')document.getElementById('f').click();
+});
+document.addEventListener('change',e=>{if(e.target.id!=='f')return;const f=e.target.files[0];if(!f)return;
+f.text().then(x=>{try{const d=JSON.parse(x);if(!Array.isArray(d.g))throw 0;if(confirm('Data sekarang akan diganti dengan cadangan ini. Lanjut?')){S=d;save();go({p:'home'})}}catch(_){alert('File cadangan tidak valid.')}})});
+
+render();
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script></body></html>
