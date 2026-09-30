@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arisan Mamah</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1F6F5B" />
+  <style>
+    :root{--bg:#F3F6F1;--ink:#1D2B26;--g:#1F6F5B;--y:#F2B233;--line:#CBD8CF}
+    body{margin:0;font:20px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+    main{max-width:560px;margin:0 auto;padding:16px 16px 48px}
+    h1{font-size:28px;margin:8px 0 12px}
+    h2{font-size:24px;margin:4px 0 8px}
+    p{margin:12px 0}
+    small{opacity:.75}
+    button,.btn{display:block;box-sizing:border-box;text-align:center;text-decoration:none;font:inherit;font-weight:700;border:2px solid var(--g);border-radius:14px;padding:14px;width:100%;margin:8px 0;background:var(--g);color:#fff;min-height:56px}
+    button.y{background:var(--y);border-color:var(--y);color:var(--ink)}
+    button.o{background:#fff;color:var(--g)}
+    input,textarea{font:inherit;width:100%;box-sizing:border-box;padding:14px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+    .card{background:#fff;border-left:8px solid var(--y);border-radius:12px;padding:14px 16px;margin:12px 0}
+    .row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+    input[type=checkbox]{width:32px;height:32px;flex:none;accent-color:var(--g)}
+    :focus-visible{outline:3px solid var(--y);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <main id="app"></main>
+  <script type="module" src="/src/app.ts"></script>
+</body>
+</html>
