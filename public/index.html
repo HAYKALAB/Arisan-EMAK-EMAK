@@ -1,16 +1,470 @@
-<!doctype html>
-<html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Arisan Mamah</title>
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#1F6F5B" />
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
-  <main id="app"></main>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script type="module" src="/src/app.ts"></script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#f8f9ff;color:#0b1c30;font-family:'Plus Jakarta Sans',sans-serif;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 1.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "outline": "#6d7a77", "on-secondary-container": "#684000", "error": "#ba1a1a", "surface-tint": "#006a61", "on-tertiary-container": "#f3fffc", "surface-container-high": "#dce9ff", "tertiary": "#006860", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#005049", "inverse-primary": "#6bd8cb", "on-primary-fixed": "#00201d", "inverse-on-surface": "#eaf1ff", "on-secondary": "#ffffff", "primary-fixed": "#89f5e7", "background": "#f8f9ff", "error-container": "#ffdad6", "surface-dim": "#cbdbf5", "secondary-fixed-dim": "#ffb95f", "primary-fixed-dim": "#6bd8cb", "surface-variant": "#d3e4fe", "outline-variant": "#bcc9c6", "on-secondary-fixed-variant": "#653e00", "surface-container": "#e5eeff", "on-secondary-fixed": "#2a1700", "on-background": "#0b1c30", "on-error-container": "#93000a", "primary-container": "#008378", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#00201d", "secondary-fixed": "#ffddb8", "surface": "#f8f9ff", "tertiary-fixed": "#9cf2e8", "on-surface": "#0b1c30", "on-error": "#ffffff", "inverse-surface": "#213145", "tertiary-container": "#248279", "surface-bright": "#f8f9ff", "tertiary-fixed-dim": "#80d5cb", "primary": "#00685f", "on-surface-variant": "#3d4947", "secondary": "#855300", "surface-container-highest": "#d3e4fe", "on-tertiary-fixed-variant": "#00504a", "on-primary": "#ffffff", "on-primary-container": "#f4fffc", "secondary-container": "#fea619", "surface-container-low": "#eff4ff" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-2xs": "0.125rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-xl": "1.5rem", "space-lg": "1.25rem", "gutter": "1rem", "margin-desktop": "2rem", "margin-tablet": "1.5rem", "space-3xl": "3rem", "gutter-mobile": "0.75rem", "margin": "1rem", "space-2xl": "2rem", "space-base": "1rem", "space-sm": "0.5rem" }, fontFamily: { "display-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "currency-display": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"] }, fontSize: { "display-lg": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "800" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "700" }], "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }], "currency-display": ["30px", { lineHeight: "36px", letterSpacing: "-0.03em", fontWeight: "800" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "body-sm": ["12px", { lineHeight: "16px", letterSpacing: "0em", fontWeight: "400" }], "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface min-h-screen flex flex-col antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm flex-1 min-w-0"><button aria-label="Kembali" class="w-11 h-11 -ml-2 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-low transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="Logo Arisanku" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VNI0BaegnKHUYh3-m_FXHpB3zlKNqvajaHbVt1jpuyo2eXhtW8yb1lHH1Zp5GS7AyeYz_MmGhA3vGGz9f9nhsf0knFKNn3v5IHJuRUMzhsa6NcngD7zXZui1I87_S3si0j8J_zAeuFtLCWqqwCCUT1XqVaV16sdCoP_uzwx257lJCh7AndRz1KwIU6CQCHsa8my9ozfXaaJ6tmg4PxibmJnaRY2RQ0AhFn-cwlvLj8BmtJ3NGes-eWDeaR"/><div class="flex flex-col min-w-0"><h1 class="text-on-surface font-headline-sm font-bold truncate text-[18px]">Catatan Arisan Keluarga</h1><span class="font-label-sm text-[11px] font-bold text-secondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">lock</span>Hanya Mamah yang Bisa Edit (Privat)</span></div></div><div class="flex items-center gap-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhiMeFe6n6vFPQTP45pdOsaSifL6hbZiK0IPsVgfG3IOPr-0IsvsiChPp0hBPnlE_8V70dbT9vZF7tMdo1QIRgyIO40SFb5VtiGGEICzAhJWlEQ9L04GhoMVkWXOyugFWz0V3ChU6oLlVUWgsyWZNcjHJegk_HeCGfu_DcRxGJpWktQVUMjYGnjXP-LGCaoIJ65X17qTpJePmXu4K72D9b14wed18RDzkCPi9eryf6rd1Qdu8_TGcUzg"/></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface"><div class="flex flex-col w-full pb-10">
+<!-- Banner Pengingat Khusus Mamah -->
+<div class="px-margin pt-space-md">
+<div class="bg-surface-container-high rounded-DEFAULT p-space-md flex items-center gap-space-sm shadow-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight">Pengaturan Pemenang Arisan</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Buku kendali privat Mamah • Hanya Mamah yang bisa ubah</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">verified_user</span>
+</div>
+</div>
+<!-- Tab Mode Penentuan Pemenang (Kocok vs Urutan) -->
+<div class="px-margin pt-space-md">
+<div class="bg-surface-container-low p-1.5 rounded-full flex gap-1 shadow-inner">
+<!-- Tab 1: Kocok Undian -->
+<button class="flex-1 py-3 px-space-xs rounded-full flex items-center justify-center gap-1.5 transition-all text-on-surface-variant font-label-lg text-label-lg active:scale-95" id="tab-kocok" onclick="switchMode('kocok')">
+<span class="material-symbols-outlined text-[20px]">casino</span>
+<span>🎲 Kocok Undian</span>
+</button>
+<!-- Tab 2: Urutan Giliran (Active Default) -->
+<button class="flex-1 py-3 px-space-xs rounded-full flex items-center justify-center gap-1.5 transition-all bg-primary text-on-primary font-headline-sm text-headline-sm shadow-md active:scale-95" id="tab-urutan" onclick="switchMode('urutan')">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">format_list_numbered</span>
+<span>📋 Urutan Nomor</span>
+</button>
+</div>
+</div>
+<!-- MODE 1: KOCOK UNDIAN (Hidden initially, toggled by Mamah) -->
+<div class="hidden px-margin pt-space-lg flex-col gap-space-md" id="view-kocok">
+<div class="bg-surface-container-lowest rounded-lg p-space-xl shadow-md text-center flex flex-col items-center">
+<div class="w-20 h-20 rounded-full bg-secondary-fixed/50 flex items-center justify-center mb-space-sm shadow-inner">
+<span class="material-symbols-outlined text-secondary text-[40px]" style="font-variation-settings: 'FILL' 1;">trophy</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Mode Kocokan Digital</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-xs">
+        Setiap bulan toples arisan diputar acak. 6 anggota yang belum menang memiliki peluang undian yang sama.
+      </p>
+<div class="w-full bg-surface-container-low rounded-DEFAULT p-space-md mt-space-lg text-left">
+<div class="flex items-center justify-between text-on-surface">
+<span class="font-label-lg text-label-lg">Sisa Peserta di Toples:</span>
+<span class="font-headline-sm text-headline-sm text-primary">6 Orang</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">4 orang sudah menang di putaran sebelumnya.</p>
+</div>
+<button class="mt-space-lg w-full py-3.5 bg-primary text-on-primary rounded-full font-headline-sm text-headline-sm shadow-md active:scale-95 flex items-center justify-center gap-2" onclick="switchMode('urutan')">
+<span class="material-symbols-outlined">restart_alt</span>
+<span>Kembali ke Mode Urutan Nomor</span>
+</button>
+</div>
+</div>
+<!-- MODE 2: URUTAN GILIRAN (Default View) -->
+<div class="flex flex-col gap-space-lg pt-space-lg" id="view-urutan">
+<!-- Status & Penjelasan Ramah Arisan -->
+<div class="px-margin">
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Arisan Keluarga Besar</span>
+</div>
+<span class="font-label-sm text-label-sm bg-primary/15 text-primary px-3 py-1 rounded-full font-bold">
+            Putaran 5 dari 10
+          </span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 50%;"></div>
+</div>
+<!-- Edukasi Bahasa Ibu-Ibu -->
+<div class="bg-surface-container-low rounded-DEFAULT p-space-md flex items-start gap-2.5 mt-1">
+<span class="material-symbols-outlined text-primary text-[22px] shrink-0 mt-0.5">info</span>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+<strong>Catatan Mamah:</strong> Pemenang tiap bulan sudah ditentukan nomor urutnya dari musyawarah pertama, jadi tidak perlu dikocok lagi.
+          </p>
+</div>
+</div>
+</div>
+<!-- KARTU SOROTAN: PEMENANG BULAN INI (Putaran 5 - Emas / Glorious) -->
+<div class="px-margin">
+<div class="bg-gradient-to-br from-secondary-fixed via-surface-container-lowest to-surface-container-low rounded-lg p-space-lg shadow-md flex flex-col gap-space-md relative overflow-hidden">
+<!-- Ornamen Latar -->
+<div class="absolute -right-6 -bottom-6 w-32 h-32 bg-secondary-container/20 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm shadow-sm font-bold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span>GILIRAN BULAN INI (PUTARAN 5)</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary font-black">September 2024</span>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<div class="relative shrink-0">
+<img class="w-16 h-16 rounded-full object-cover shadow-sm" data-alt="Warm smiling Indonesian auntie in a gentle pastel hijab looking directly at camera, soft friendly portrait lighting, warm cream background, high quality photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD47tNudT5Y5ZaMf0NBDijNaqr4SfqhktETrK8wYeyvQFUuVIwDWSBAdbeDm531MYJjst7BwaNZYvel_f2q4BX9y53AF9OlH7veRNLb1aFJ1pxeM39Uru3GkOk267QkL2fuvmPsIXCDgcnXSxR5YFlLreSasyXxr710xi35mOdrhYBbDS59tbsF3Wzde9er16cASadUfeJaTrYI4-yBweGsEQGSt3-RKC-3dgCgAtVWmpmYTI4PBnxBqg"/>
+<div class="absolute -bottom-1 -right-1 bg-secondary text-on-secondary w-6 h-6 rounded-full flex items-center justify-center font-headline-sm text-[12px] font-bold shadow">
+              05
+            </div>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="font-headline-md text-headline-md text-on-surface truncate font-bold">Tante Dewi Kurnia</h3>
+<p class="font-body-md text-body-md text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+<span>Siap Terima Kas: Rp 5.000.000</span>
+</p>
+</div>
+</div>
+<!-- Tombol Aksi Langsung untuk Mamah -->
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full py-3.5 bg-primary text-on-primary rounded-full font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-md active:scale-98 transition-all hover:bg-primary-container" onclick="handleSerahUang()">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+<span>Serahkan Uang Arisan (Rp 5 Juta)</span>
+</button>
+<button class="w-full py-3 bg-surface-container-lowest text-primary rounded-full font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm active:scale-98 transition-all" onclick="handleKirimWA('Tante Dewi Kurnia', '5', 'Rp 5.000.000')">
+<span class="material-symbols-outlined text-[20px] text-primary">chat</span>
+<span>Kirim Ucapan &amp; Kabar ke WA Tante Dewi</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pilihan Tambahan: Tombol Tukar Urutan & Shortcut Mode -->
+<div class="px-margin flex gap-space-sm">
+<!-- Tombol Tukar Urutan (Fitur Khas Arisan) -->
+<button class="flex-1 py-3 px-space-md bg-surface-container-lowest text-on-surface rounded-DEFAULT shadow-sm flex items-center justify-center gap-2 font-label-lg text-label-lg active:bg-surface-container-high transition-colors" onclick="bukaModalTukar()">
+<span class="material-symbols-outlined text-primary text-[20px]">swap_vert</span>
+<span class="font-bold">Tukar Nomor Urutan</span>
+</button>
+<!-- Shortcut Ganti ke Kocokan -->
+<button class="flex-1 py-3 px-space-md bg-surface-container-lowest text-on-surface-variant rounded-DEFAULT shadow-sm flex items-center justify-center gap-2 font-label-md text-label-md active:bg-surface-container-high transition-colors" onclick="switchMode('kocok')">
+<span class="material-symbols-outlined text-secondary text-[20px]">casino</span>
+<span>Ganti ke Kocokan?</span>
+</button>
+</div>
+<!-- LIST LENGKAP: 10 NOMOR URUTAN GILIRAN -->
+<div class="px-margin flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pt-2">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Daftar Lengkap Nomor Antrean</h4>
+<span class="font-label-md text-label-md text-on-surface-variant">Total: 10 Anggota</span>
+</div>
+<!-- Item 1: Mamah (Selesai) -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            01
+          </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Siti Rahmawati (Mamah)</p>
+<span class="font-label-sm text-label-sm bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold">Saya</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 1 (Mei 2024)</p>
+</div>
+</div>
+<div class="flex items-center gap-1 px-3 py-1 bg-surface-container-low text-primary rounded-full shrink-0 font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Sudah Terima</span>
+</div>
+</div>
+<!-- Item 2: Bu Fatimah (Selesai) -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            02
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Bu Fatimah</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 2 (Juni 2024)</p>
+</div>
+</div>
+<div class="flex items-center gap-1 px-3 py-1 bg-surface-container-low text-primary rounded-full shrink-0 font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Sudah Terima</span>
+</div>
+</div>
+<!-- Item 3: Om Hendra (Selesai) -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            03
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Om Hendra</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 3 (Juli 2024)</p>
+</div>
+</div>
+<div class="flex items-center gap-1 px-3 py-1 bg-surface-container-low text-primary rounded-full shrink-0 font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Sudah Terima</span>
+</div>
+</div>
+<!-- Item 4: Ibu Nurjanah (Selesai) -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            04
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Ibu Nurjanah</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 4 (Agustus 2024)</p>
+</div>
+</div>
+<div class="flex items-center gap-1 px-3 py-1 bg-surface-container-low text-primary rounded-full shrink-0 font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Sudah Terima</span>
+</div>
+</div>
+<!-- Item 5: Tante Dewi Kurnia (Sedang Berjalan - Highlight Emas) -->
+<div class="bg-gradient-to-r from-secondary-fixed/40 to-surface-container-lowest rounded-DEFAULT p-space-md shadow-md flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary font-headline-sm text-headline-sm flex items-center justify-center shrink-0 shadow-sm font-bold">
+            05
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate font-bold">Tante Dewi Kurnia</p>
+<p class="font-body-sm text-body-sm text-secondary font-bold">Putaran 5 (September • Bulan Ini)</p>
+</div>
+</div>
+<div class="flex items-center gap-1 px-3 py-1.5 bg-secondary-container text-on-secondary-container rounded-full shrink-0 font-label-sm text-label-sm font-black shadow-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">hourglass_top</span>
+<span>GILIRANNYA</span>
+</div>
+</div>
+<!-- Item 6: Rian Ardiansyah (Antrean Mendatang) -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm opacity-90">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            06
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Rian Ardiansyah</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 6 (Oktober 2024)</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline px-3 py-1 bg-surface-container-low rounded-full">
+          Menunggu Giliran
+        </span>
+</div>
+<!-- Item 7: Maya Agustina -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm opacity-90">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            07
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Maya Agustina</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 7 (November 2024)</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline px-3 py-1 bg-surface-container-low rounded-full">
+          Menunggu Giliran
+        </span>
+</div>
+<!-- Item 8: Pak Bambang -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm opacity-85">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            08
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Pak Bambang</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 8 (Desember 2024)</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline px-3 py-1 bg-surface-container-low rounded-full">
+          Menunggu Giliran
+        </span>
+</div>
+<!-- Item 9: Bu Sri Rejeki -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm opacity-80">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            09
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Bu Sri Rejeki</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 9 (Januari 2025)</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline px-3 py-1 bg-surface-container-low rounded-full">
+          Menunggu Giliran
+        </span>
+</div>
+<!-- Item 10: Bu Rita (Penutup Putaran) -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm flex items-center justify-between gap-space-sm opacity-80">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+            10
+          </div>
+<div class="min-w-0">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Bu Rita</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Putaran 10 (Februari 2025 • Terakhir)</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline px-3 py-1 bg-surface-container-low rounded-full">
+          Menunggu Giliran
+        </span>
+</div>
+</div>
+<!-- Tombol Aksi Bawah: Bagikan ke WA Grup Keluarga & Catat Buku Kas -->
+<div class="px-margin pt-space-md flex flex-col gap-space-sm">
+<button class="w-full py-4 bg-primary text-on-primary rounded-full font-headline-sm text-headline-sm shadow-md flex items-center justify-center gap-2 active:scale-98 transition-all" onclick="handleBagikanWAGrup()">
+<span class="material-symbols-outlined text-[24px]">share</span>
+<span>Bagikan Daftar Urutan ke WA Grup</span>
+</button>
+<button class="w-full py-3.5 bg-surface-container-lowest text-on-surface rounded-full font-label-lg text-label-lg shadow-sm flex items-center justify-center gap-2 active:bg-surface-container-high transition-colors" onclick="handleCatatKas()">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+<span>Buka Pembukuan Kas Arisan</span>
+</button>
+</div>
+</div>
+<!-- MODAL TUKAR URUTAN (Sangat Sederhana untuk Mamah) -->
+<div class="hidden fixed inset-0 z-50 flex items-end justify-center bg-inverse-surface/40 backdrop-blur-sm p-margin" id="modal-tukar">
+<div class="bg-surface-container-lowest w-full rounded-t-lg rounded-b-DEFAULT p-space-lg shadow-xl flex flex-col gap-space-md max-w-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">swap_vert</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Tukar Urutan Nomor</h3>
+</div>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:bg-surface-container-high" onclick="tutupModalTukar()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Pilih dua anggota yang sepakat saling bertukar nomor giliran pencairan:
+      </p>
+<div class="flex flex-col gap-space-sm">
+<div class="bg-surface-container-low p-space-sm rounded-DEFAULT flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Anggota Pertama:</label>
+<select class="w-full p-2.5 rounded-DEFAULT bg-surface-container-lowest text-on-surface font-body-md border-0 focus:ring-2 focus:ring-primary shadow-sm" id="select-tukar-1">
+<option value="5">No 05 - Tante Dewi Kurnia (September)</option>
+<option selected="" value="6">No 06 - Rian Ardiansyah (Oktober)</option>
+<option value="7">No 07 - Maya Agustina (November)</option>
+<option value="8">No 08 - Pak Bambang (Desember)</option>
+<option value="9">No 09 - Bu Sri Rejeki (Januari)</option>
+<option value="10">No 10 - Bu Rita (Februari)</option>
+</select>
+</div>
+<div class="flex justify-center -my-2 z-10">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px]">sync_alt</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-DEFAULT flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant font-bold">Ditukar Dengan:</label>
+<select class="w-full p-2.5 rounded-DEFAULT bg-surface-container-lowest text-on-surface font-body-md border-0 focus:ring-2 focus:ring-primary shadow-sm" id="select-tukar-2">
+<option value="5">No 05 - Tante Dewi Kurnia (September)</option>
+<option value="6">No 06 - Rian Ardiansyah (Oktober)</option>
+<option selected="" value="7">No 07 - Maya Agustina (November)</option>
+<option value="8">No 08 - Pak Bambang (Desember)</option>
+<option value="9">No 09 - Bu Sri Rejeki (Januari)</option>
+<option value="10">No 10 - Bu Rita (Februari)</option>
+</select>
+</div>
+</div>
+<div class="flex gap-2 pt-2">
+<button class="flex-1 py-3 bg-surface-container-high text-on-surface rounded-full font-label-lg text-label-lg active:scale-95" onclick="tutupModalTukar()">
+          Batal
+        </button>
+<button class="flex-1 py-3 bg-primary text-on-primary rounded-full font-headline-sm text-headline-sm shadow-md active:scale-95" onclick="simpanTukar()">
+          Simpan Tukar
+        </button>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFIKASI RAMAH MAMAH -->
+<div class="fixed bottom-6 inset-x-margin z-50 hidden transition-all duration-300" id="toast-notif">
+<div class="bg-inverse-surface text-inverse-on-surface px-space-lg py-3 rounded-full shadow-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed text-[24px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<p class="font-body-md text-body-md flex-1" id="toast-text">Perubahan berhasil dicatat!</p>
+</div>
+</div>
+</div>
+<script>
+  function switchMode(mode) {
+    const tabKocok = document.getElementById('tab-kocok');
+    const tabUrutan = document.getElementById('tab-urutan');
+    const viewKocok = document.getElementById('view-kocok');
+    const viewUrutan = document.getElementById('view-urutan');
+
+    if (mode === 'kocok') {
+      tabKocok.className = "flex-1 py-3 px-space-xs rounded-full flex items-center justify-center gap-1.5 transition-all bg-primary text-on-primary font-headline-sm text-headline-sm shadow-md active:scale-95";
+      tabUrutan.className = "flex-1 py-3 px-space-xs rounded-full flex items-center justify-center gap-1.5 transition-all text-on-surface-variant font-label-lg text-label-lg active:scale-95";
+      viewKocok.classList.remove('hidden');
+      viewUrutan.classList.add('hidden');
+      tampilkanToast("Beralih ke Mode Kocokan Undian (Acak)");
+    } else {
+      tabUrutan.className = "flex-1 py-3 px-space-xs rounded-full flex items-center justify-center gap-1.5 transition-all bg-primary text-on-primary font-headline-sm text-headline-sm shadow-md active:scale-95";
+      tabKocok.className = "flex-1 py-3 px-space-xs rounded-full flex items-center justify-center gap-1.5 transition-all text-on-surface-variant font-label-lg text-label-lg active:scale-95";
+      viewUrutan.classList.remove('hidden');
+      viewKocok.classList.add('hidden');
+      tampilkanToast("Beralih ke Mode Urutan Nomor Giliran");
+    }
+  }
+
+  function handleSerahUang() {
+    tampilkanToast("Uang Rp 5.000.000 berhasil dicatat diserahkan ke Tante Dewi!");
+  }
+
+  function handleKirimWA(nama, putaran, nominal) {
+    const pesan = encodeURIComponent(
+      `Assalamu'alaikum ${nama}, alhamdulillah bulan ini (Putaran ${putaran}) giliran Tante yang terima uang arisan keluarga sebesar ${nominal}. Uang sudah siap dicairkan ya Tan! Dari Mamah (Ketua Arisan).`
+    );
+    tampilkanToast(`Membuka WhatsApp untuk ${nama}...`);
+    setTimeout(() => {
+      window.open(`https://wa.me/?text=${pesan}`, '_blank');
+    }, 600);
+  }
+
+  function handleBagikanWAGrup() {
+    const rekap = encodeURIComponent(
+      `📢 *URUTAN GILIRAN ARISAN KELUARGA BESAR*\n` +
+      `Total: 10 Putaran (@Rp 5.000.000)\n\n` +
+      `✅ No 1: Siti Rahmawati (Mamah) - Putaran 1 (Mei)\n` +
+      `✅ No 2: Bu Fatimah - Putaran 2 (Juni)\n` +
+      `✅ No 3: Om Hendra - Putaran 3 (Juli)\n` +
+      `✅ No 4: Ibu Nurjanah - Putaran 4 (Agustus)\n` +
+      `⭐ *No 5: Tante Dewi Kurnia - Putaran 5 (September / BULAN INI)*\n` +
+      `⏳ No 6: Rian Ardiansyah - Putaran 6 (Oktober)\n` +
+      `⏳ No 7: Maya Agustina - Putaran 7 (November)\n` +
+      `⏳ No 8: Pak Bambang - Putaran 8 (Desember)\n` +
+      `⏳ No 9: Bu Sri Rejeki - Putaran 9 (Januari)\n` +
+      `⏳ No 10: Bu Rita - Putaran 10 (Februari)\n\n` +
+      `Catatan: Urutan nomor bersifat tetap sesuai kesepakatan keluarga.`
+    );
+    tampilkanToast("Menyiapkan pesan WhatsApp Grup...");
+    setTimeout(() => {
+      window.open(`https://wa.me/?text=${rekap}`, '_blank');
+    }, 600);
+  }
+
+  function handleCatatKas() {
+    tampilkanToast("Membuka detail buku kas arisan...");
+  }
+
+  function bukaModalTukar() {
+    document.getElementById('modal-tukar').classList.remove('hidden');
+  }
+
+  function tutupModalTukar() {
+    document.getElementById('modal-tukar').classList.add('hidden');
+  }
+
+  function simpanTukar() {
+    const val1 = document.getElementById('select-tukar-1').value;
+    const val2 = document.getElementById('select-tukar-2').value;
+    if (val1 === val2) {
+      alert("Pilih dua anggota yang berbeda untuk ditukar!");
+      return;
+    }
+    tutupModalTukar();
+    tampilkanToast("Urutan berhasil ditukar & disimpan di buku catatan Mamah!");
+  }
+
+  function tampilkanToast(pesan) {
+    const toast = document.getElementById('toast-notif');
+    const toastText = document.getElementById('toast-text');
+    toastText.innerText = pesan;
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 3200);
+  }
+</script></main>
+</body></html>
